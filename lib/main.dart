@@ -17,13 +17,14 @@ class MyApp extends StatelessWidget {
       create: (_) => Products(),
       child: MaterialApp(
         title: 'Minha Loja',
+        color: Theme.of(context).primaryColor,
         theme: ThemeData(
           fontFamily: 'Lato',
           primarySwatch: Colors.purple,
           colorScheme:
               const ColorScheme.light().copyWith(secondary: Colors.deepOrange),
         ),
-        home: ProductOverviewScreen(),
+        home: const ProductOverviewScreen(),
         routes: {
           AppRoutes.PRODUCT_DETAIL: (ctx) => const ProductDetailScreen()
         },
