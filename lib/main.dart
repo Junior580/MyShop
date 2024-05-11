@@ -16,8 +16,6 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => Products(),
       child: MaterialApp(
-        title: 'Minha Loja',
-        color: Theme.of(context).primaryColor,
         theme: ThemeData(
           fontFamily: 'Lato',
           primarySwatch: Colors.purple,
