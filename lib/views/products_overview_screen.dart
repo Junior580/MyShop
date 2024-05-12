@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/utils/app_routes.dart';
 import '../widgets/product_grid.dart';
+import '../widgets/custom_bagde.dart';
+import '../providers/cart.dart';
 
 enum FilterOptions { Favorite, All }
 
@@ -40,7 +44,19 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
                 child: Text('Todos'),
               )
             ],
-          )
+          ),
+          Consumer<Cart>(
+            child: IconButton(
+              icon: const Icon(Icons.shopping_cart),
+              onPressed: () {
+                Navigator.of(context).pushNamed(AppRoutes.CART);
+              },
+            ),
+            builder: (_, cart, child) => CustomBadge(
+              value: cart.itemCount.toString(),
+              child: child as Widget,
+            ),
+          ),
         ],
       ),
       body: ProductGrid(

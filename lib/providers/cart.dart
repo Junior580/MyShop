@@ -23,6 +23,19 @@ class Cart with ChangeNotifier {
     return {..._items};
   }
 
+  int get itemCount {
+    return _items.length;
+  }
+
+  String get totalAmount {
+    double total = 0;
+    _items.forEach((key, cartItem) {
+      total += cartItem.price * cartItem.quantity;
+    });
+
+    return total.toStringAsFixed(2);
+  }
+
   void addItem(Product product) {
     if (_items.containsKey(product.id)) {
       _items.update(
@@ -45,7 +58,6 @@ class Cart with ChangeNotifier {
         ),
       );
     }
-
     notifyListeners();
   }
 }
