@@ -1,13 +1,13 @@
-// ignore_for_file: unnecessary_new
-
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:shop/views/product_form_screen.dart';
 
 import 'utils/app_routes.dart';
 import 'views/products_overview_screen.dart';
 import 'views/product_detail_screen.dart';
 import 'views/cart_screen.dart';
 import 'views/orders_screen.dart';
+import 'views/products_screen.dart';
 
 import 'providers/cart.dart';
 import 'providers/products.dart';
@@ -40,11 +40,14 @@ class MyApp extends StatelessWidget {
             secondary: Colors.deepOrange,
           ),
         ),
-        home: const ProductOverviewScreen(),
+        // home: const ProductOverviewScreen(),
         routes: {
+          AppRoutes.HOME: (ctx) => const ProductOverviewScreen(),
           AppRoutes.ORDERS: (ctx) => const OrdersScreen(),
           AppRoutes.PRODUCT_DETAIL: (ctx) => const ProductDetailScreen(),
-          AppRoutes.CART: (ctx) => const CartScreen()
+          AppRoutes.CART: (ctx) => const CartScreen(),
+          AppRoutes.PRODUCTS: (ctx) => const ProductsScreen(),
+          AppRoutes.PRODUCT_FORM: (ctx) => const ProductFormScreen()
         },
       ),
     );
