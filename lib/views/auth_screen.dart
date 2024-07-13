@@ -1,8 +1,7 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:shop/widgets/auth_card.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
@@ -46,7 +45,8 @@ class AuthScreen extends StatelessWidget {
                         fontFamily: "Anton",
                         color: Theme.of(context).primaryColorDark),
                   ),
-                )
+                ),
+                const AuthCard(),
               ],
             ),
           )
