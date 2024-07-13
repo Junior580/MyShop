@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:shop/views/product_form_screen.dart';
 
 import 'utils/app_routes.dart';
+import 'views/auth_screen.dart';
+
 import 'views/products_overview_screen.dart';
 import 'views/product_detail_screen.dart';
 import 'views/cart_screen.dart';
@@ -42,6 +44,7 @@ class MyApp extends StatelessWidget {
         ),
         // home: const ProductOverviewScreen(),
         routes: {
+          AppRoutes.AUTH: (ctx) => const AuthScreen(),
           AppRoutes.HOME: (ctx) => const ProductOverviewScreen(),
           AppRoutes.ORDERS: (ctx) => const OrdersScreen(),
           AppRoutes.PRODUCT_DETAIL: (ctx) => const ProductDetailScreen(),
