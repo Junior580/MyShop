@@ -46,10 +46,8 @@ class MyApp extends StatelessWidget {
             secondary: Colors.deepOrange,
           ),
         ),
-        // home: const ProductOverviewScreen(),
         routes: {
-          // AppRoutes.AUTH_HOME: (ctx) => const AuthOrHomeScreen(),
-          AppRoutes.AUTH_HOME: (ctx) => const ProductOverviewScreen(),
+          AppRoutes.AUTH_HOME: (ctx) => const AuthOrHomeScreen(),
           AppRoutes.ORDERS: (ctx) => const OrdersScreen(),
           AppRoutes.PRODUCT_DETAIL: (ctx) => const ProductDetailScreen(),
           AppRoutes.CART: (ctx) => const CartScreen(),

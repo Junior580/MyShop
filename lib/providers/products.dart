@@ -2,13 +2,16 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:shop/utils/constants.dart';
 import 'product.dart';
 import '../data/dummy_data.dart';
 import 'package:http/http.dart' as http;
 
 class Products with ChangeNotifier {
-  final _baseUrl = Uri.parse('');
-  final List<Product> _items = DUMMY_PRODUCTS;
+  final String _baseUrl = '${Constants.BASE_API_URL}/products';
+  final List<Product> _items = [];
+
+  // final List<Product> _items = DUMMY_PRODUCTS;
 
   List<Product> get items => [..._items];
 
@@ -21,7 +24,7 @@ class Products with ChangeNotifier {
   }
 
   Future<void> loadProducts() async {
-    final response = await http.get(_baseUrl);
+    final response = await http.get(Uri.parse("$_baseUrl.json"));
     Map<String, dynamic> data = json.decode(response.body);
 
     _items.clear();
@@ -41,7 +44,7 @@ class Products with ChangeNotifier {
 
   Future<void> addProduct(Product newProduct) async {
     final response = await http.post(
-      _baseUrl,
+      Uri.parse("$_baseUrl.json"),
       body: json.encode({
         'title': newProduct.title,
         'description': newProduct.description,
@@ -65,7 +68,7 @@ class Products with ChangeNotifier {
     final index = _items.indexWhere((prod) => prod.id == product.id);
     if (index >= 0) {
       await http.patch(
-        _baseUrl.replace(query: product.id),
+        Uri.parse("$_baseUrl.json").replace(query: product.id),
         body: json.encode({
           'title': product.title,
           'description': product.description,
@@ -85,7 +88,8 @@ class Products with ChangeNotifier {
       _items.remove(product);
       notifyListeners();
 
-      final response = await http.delete(_baseUrl.replace(query: product.id));
+      final response = await http
+          .delete(Uri.parse("$_baseUrl.json").replace(query: product.id));
 
       if (response.statusCode >= 400) {
         _items.insert(index, product);

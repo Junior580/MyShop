@@ -5,18 +5,20 @@ import 'package:http/http.dart' as http;
 import 'package:shop/exceptions/auth_exception.dart';
 
 class Auth with ChangeNotifier {
-  late String _token;
-  late DateTime _expiryDate;
+  String? _token;
+  DateTime? _expiryDate;
 
-  get isAuth {
+  bool get isAuth {
     return token != null;
   }
 
-  String get token {
-    if (_expiryDate.isAfter(DateTime.now())) {
+  String? get token {
+    if (_token != null &&
+        _expiryDate != null &&
+        _expiryDate!.isAfter(DateTime.now())) {
       return _token;
     } else {
-      return '';
+      return null;
     }
   }
 
@@ -45,6 +47,7 @@ class Auth with ChangeNotifier {
           seconds: int.parse(responseBody['expiresIn']),
         ),
       );
+      notifyListeners();
     }
 
     return Future.value();
