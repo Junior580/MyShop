@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/utils/generate_id.dart';
 
 import '../providers/product.dart';
 import '../providers/products.dart';
@@ -81,7 +80,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
     _form.currentState?.save();
 
     final product = Product(
-      id: _formData['id'] ?? generateRandomId(),
+      id: _formData['id'] ?? '',
       title: _formData['title'],
       price: _formData['price'],
       description: _formData['description'],

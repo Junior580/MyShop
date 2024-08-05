@@ -4,14 +4,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:shop/utils/constants.dart';
 import 'product.dart';
-import '../data/dummy_data.dart';
 import 'package:http/http.dart' as http;
 
 class Products with ChangeNotifier {
   final String _baseUrl = '${Constants.BASE_API_URL}/products';
   final List<Product> _items = [];
-
-  // final List<Product> _items = DUMMY_PRODUCTS;
 
   List<Product> get items => [..._items];
 
@@ -68,7 +65,7 @@ class Products with ChangeNotifier {
     final index = _items.indexWhere((prod) => prod.id == product.id);
     if (index >= 0) {
       await http.patch(
-        Uri.parse("$_baseUrl.json").replace(query: product.id),
+        Uri.parse("$_baseUrl/${product.id}.json"),
         body: json.encode({
           'title': product.title,
           'description': product.description,
@@ -88,8 +85,8 @@ class Products with ChangeNotifier {
       _items.remove(product);
       notifyListeners();
 
-      final response = await http
-          .delete(Uri.parse("$_baseUrl.json").replace(query: product.id));
+      final response =
+          await http.delete(Uri.parse("$_baseUrl/${product.id}.json"));
 
       if (response.statusCode >= 400) {
         _items.insert(index, product);

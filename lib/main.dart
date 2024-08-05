@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:shop/providers/auth.dart';
 import 'package:shop/views/auth_home_screen.dart';
 import 'package:shop/views/product_form_screen.dart';
-import 'package:shop/views/products_overview_screen.dart';
 
 import 'utils/app_routes.dart';
 
