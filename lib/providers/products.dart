@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io';
+import 'package:shop/exceptions/http_exception.dart';
 
 import 'package:flutter/material.dart';
 import 'package:shop/utils/constants.dart';
@@ -8,7 +8,12 @@ import 'package:http/http.dart' as http;
 
 class Products with ChangeNotifier {
   final String _baseUrl = '${Constants.BASE_API_URL}/products';
-  final List<Product> _items = [];
+  // ignore: prefer_final_fields
+  List<Product> _items = [];
+  // ignore: prefer_final_fields
+  String? _token;
+
+  Products(this._token, this._items);
 
   List<Product> get items => [..._items];
 
@@ -21,7 +26,7 @@ class Products with ChangeNotifier {
   }
 
   Future<void> loadProducts() async {
-    final response = await http.get(Uri.parse("$_baseUrl.json"));
+    final response = await http.get(Uri.parse("$_baseUrl.json?auth=$_token"));
     Map<String, dynamic> data = json.decode(response.body);
 
     _items.clear();
@@ -41,7 +46,7 @@ class Products with ChangeNotifier {
 
   Future<void> addProduct(Product newProduct) async {
     final response = await http.post(
-      Uri.parse("$_baseUrl.json"),
+      Uri.parse("$_baseUrl.json?auth=$_token"),
       body: json.encode({
         'title': newProduct.title,
         'description': newProduct.description,
@@ -65,7 +70,7 @@ class Products with ChangeNotifier {
     final index = _items.indexWhere((prod) => prod.id == product.id);
     if (index >= 0) {
       await http.patch(
-        Uri.parse("$_baseUrl/${product.id}.json"),
+        Uri.parse("$_baseUrl/${product.id}.json?auth=$_token"),
         body: json.encode({
           'title': product.title,
           'description': product.description,
@@ -90,6 +95,7 @@ class Products with ChangeNotifier {
 
       if (response.statusCode >= 400) {
         _items.insert(index, product);
+
         notifyListeners();
         throw const HttpException('Ocorreu um erro na exclusão do produto.');
       }
