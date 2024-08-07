@@ -39,9 +39,6 @@ class ProductGridItem extends StatelessWidget {
                 ScaffoldMessenger.of(context).hideCurrentSnackBar();
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    onVisible: () {
-                      print('onn visible');
-                    },
                     content: const Text(
                       'Produto adicionado com sucesso',
                     ),

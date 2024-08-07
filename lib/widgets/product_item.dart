@@ -12,6 +12,8 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+
     return ListTile(
       leading: CircleAvatar(
         backgroundImage: NetworkImage(product.imageUrl),
@@ -50,10 +52,10 @@ class ProductItem extends StatelessWidget {
                         )).then((value) async {
                   if (value) {
                     try {
-                      Provider.of<Products>(context, listen: false)
+                      await Provider.of<Products>(context, listen: false)
                           .deleteProduct(product.id);
                     } on HttpException catch (error) {
-                      ScaffoldMessenger.of(context).showSnackBar(
+                      scaffoldMessenger.showSnackBar(
                         SnackBar(
                           content: Text(error.toString()),
                         ),

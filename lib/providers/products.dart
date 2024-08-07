@@ -30,6 +30,7 @@ class Products with ChangeNotifier {
     Map<String, dynamic> data = json.decode(response.body);
 
     _items.clear();
+
     data.forEach((productId, productData) {
       _items.add(Product(
         id: productId,
@@ -40,7 +41,9 @@ class Products with ChangeNotifier {
         isFavorite: productData['isFavorite'],
       ));
     });
+
     notifyListeners();
+
     return Future.value();
   }
 
