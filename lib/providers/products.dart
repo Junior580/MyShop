@@ -12,8 +12,9 @@ class Products with ChangeNotifier {
   List<Product> _items = [];
   // ignore: prefer_final_fields
   String? _token;
+  final String? _userId;
 
-  Products(this._token, this._items);
+  Products([this._token, this._userId, this._items = const []]);
 
   List<Product> get items => [..._items];
 
@@ -29,16 +30,22 @@ class Products with ChangeNotifier {
     final response = await http.get(Uri.parse("$_baseUrl.json?auth=$_token"));
     Map<String, dynamic> data = json.decode(response.body);
 
+    final favResp = await http.get(Uri.parse(
+        "${Constants.BASE_API_URL}/userFavorites/$_userId.json?auth=$_token"));
+    final favMap = json.decode(favResp.body);
+
     _items.clear();
 
     data.forEach((productId, productData) {
+      final isFavorite = favMap == null ? false : favMap[productId] ?? false;
+
       _items.add(Product(
         id: productId,
         title: productData['title'],
         description: productData['description'],
         price: productData['price'],
         imageUrl: productData['imageUrl'],
-        isFavorite: productData['isFavorite'],
+        isFavorite: isFavorite,
       ));
     });
 
@@ -55,7 +62,7 @@ class Products with ChangeNotifier {
         'description': newProduct.description,
         'price': newProduct.price,
         'imageUrl': newProduct.imageUrl,
-        'isFavorite': newProduct.isFavorite,
+        // 'isFavorite': newProduct.isFavorite,
       }),
     );
 

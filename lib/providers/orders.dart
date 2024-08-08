@@ -25,7 +25,7 @@ class Orders with ChangeNotifier {
 
   final String? _token;
 
-  Orders(this._token, this._items);
+  Orders([this._token, this._items = const []]);
 
   List<Order> get items {
     return [..._items];
@@ -39,8 +39,6 @@ class Orders with ChangeNotifier {
     List<Order> loadedItems = [];
     final response = await http.get(Uri.parse("$_baseUrl.json?auth=$_token"));
     Map<String, dynamic> data = json.decode(response.body);
-
-    List<CartItem> products = [];
 
     data.forEach((orderId, orderData) {
       loadedItems.add(
