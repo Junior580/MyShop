@@ -22,6 +22,7 @@ class Order {
 class Orders with ChangeNotifier {
   final String _baseUrl = '${Constants.BASE_API_URL}/orders';
   List<Order> _items = [];
+
   final String? _token;
 
   Orders(this._token, this._items);
@@ -39,27 +40,38 @@ class Orders with ChangeNotifier {
     final response = await http.get(Uri.parse("$_baseUrl.json?auth=$_token"));
     Map<String, dynamic> data = json.decode(response.body);
 
+    List<CartItem> products = [];
+
     data.forEach((orderId, orderData) {
       loadedItems.add(
         Order(
           id: orderId,
-          total: orderData['total'],
+          total: orderData['total'] is double
+              ? orderData['total']
+              : double.parse(orderData['total'].toString()),
           date: DateTime.parse(orderData['date']),
+          // products: products,
           products: (orderData['products'] as List<dynamic>).map((item) {
             return CartItem(
               id: item['id'],
-              price: item['price'],
+              price: item['price'] is double
+                  ? item['price']
+                  : double.parse(item['price'].toString()),
               productId: item['productId'],
-              quantity: item['quantity'],
+              quantity: item['quantity'] is int
+                  ? item['quantity']
+                  : int.parse(item['quantity'].toString()),
               title: item['title'],
             );
           }).toList(),
         ),
       );
     });
+
     notifyListeners();
 
     _items = loadedItems.reversed.toList();
+
     return Future.value();
   }
 
