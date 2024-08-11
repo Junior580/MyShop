@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shop/data/store.dart';
 import 'package:shop/exceptions/auth_exception.dart';
+import 'package:shop/utils/constants.dart';
 
 class Auth with ChangeNotifier {
   String? _userId;
@@ -32,8 +33,7 @@ class Auth with ChangeNotifier {
 
   Future<void> _authenticate(
       String email, String password, String urlSegment) async {
-    final url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:$urlSegment?key=AIzaSyASnfEeTNxLhtGx2z6zVZ7KObbbcXugqVw";
+    final url = Constants.getLoginUrl(urlSegment);
 
     final response = await http.post(
       Uri.parse(url),
