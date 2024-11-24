@@ -12,6 +12,7 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: [
           AppBar(
+            key: const Key("AppBar"),
             title: const Text('Bem vindo Usúario'),
             automaticallyImplyLeading: false,
           ),
