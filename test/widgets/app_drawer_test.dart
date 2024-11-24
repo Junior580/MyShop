@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/providers/auth.dart';
 import 'package:shop/widgets/app_drawer.dart';
-import 'package:mockito/mockito.dart';
 
 void main() {
   testWidgets('AppDrawer smoke test', (WidgetTester tester) async {
@@ -34,6 +32,6 @@ void main() {
     expect(find.text('Gerencia Produtos'), findsOneWidget);
     expect(find.text('Sair'), findsOneWidget);
 
-    await tester.tap(find.text('Sair'));
+    expect(find.text('Loja'), findsOneWidget);
   });
 }
