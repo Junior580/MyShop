@@ -22,15 +22,6 @@ jobs:
       with:
         flutter-version: '3.24.1' 
     
-    - name: Generate constants.dart
-      run: |
-        echo 'library shop;' > lib/utils/constants.dart
-        echo 'class Constants {' >> lib/utils/constants.dart
-        echo '  static const String API_URL = "${{ secrets.API_URL }}";' >> lib/utils/constants.dart
-        echo '  static const String LOGIN_URL = "${{ secrets.LOGIN_URL }}";' >> lib/utils/constants.dart
-        echo '}' >> lib/utils/constants.dart
-
-
     - name: Install dependencies
       run: flutter pub get
 
