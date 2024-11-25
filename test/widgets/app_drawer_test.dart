@@ -6,18 +6,25 @@ import 'package:shop/providers/auth.dart';
 import 'package:shop/utils/app_routes.dart';
 import 'package:shop/widgets/app_drawer.dart';
 
+class MockAuth extends Mock implements Auth {}
+
 void main() {
-  testWidgets('AppDrawer smoke test', (WidgetTester tester) async {
-    final navigator = MockNavigator();
+  late MockAuth mockAuth;
+  late MockNavigator navigator;
+
+  setUp(() {
+    mockAuth = MockAuth();
+    navigator = MockNavigator();
+
+    when(() => mockAuth.logout()).thenReturn(null);
     when(navigator.canPop).thenReturn(false);
     when(() => navigator.pushReplacementNamed(any())).thenAnswer((_) async {});
-
+  });
+  testWidgets('AppDrawer smoke test', (WidgetTester tester) async {
     await tester.pumpWidget(
       MultiProvider(
         providers: [
-          ChangeNotifierProvider(
-            create: (_) => new Auth(),
-          ),
+          ChangeNotifierProvider<Auth>.value(value: mockAuth),
         ],
         child: MaterialApp(
           home: MockNavigatorProvider(
@@ -53,8 +60,8 @@ void main() {
     verify(() => navigator.pushReplacementNamed(AppRoutes.PRODUCTS)).called(1);
 
     expect(find.text('Sair'), findsOneWidget);
-    // await tester.tap(find.text('Loja'));
-    // await tester.pumpAndSettle();
-    // verify(() => navigator.pushReplacementNamed(AppRoutes.AUTH_HOME)).called(1);
+    await tester.tap(find.text('Sair'));
+    await tester.pumpAndSettle();
+    verify(() => mockAuth.logout()).called(1);
   });
 }
