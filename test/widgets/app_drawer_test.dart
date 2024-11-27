@@ -18,7 +18,9 @@ void main() {
 
     when(() => mockAuth.logout()).thenReturn(null);
     when(navigator.canPop).thenReturn(false);
-    when(() => navigator.pushReplacementNamed(any())).thenAnswer((_) async {});
+    when(() => navigator.pushReplacementNamed(any())).thenAnswer((_) async {
+      return null;
+    });
   });
   testWidgets('AppDrawer smoke test', (WidgetTester tester) async {
     await tester.pumpWidget(

@@ -20,7 +20,9 @@ void main() {
     when(() => mockAuth.signup(any(), any()))
         .thenAnswer((_) async => Future.value());
     when(navigator.canPop).thenReturn(false);
-    when(() => navigator.pushReplacementNamed(any())).thenAnswer((_) async {});
+    when(() => navigator.pushReplacementNamed(any())).thenAnswer((_) async {
+      return null;
+    });
   });
 
   testWidgets('AuthCard should switch between login and signup',
