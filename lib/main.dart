@@ -10,12 +10,15 @@ import 'views/product_detail_screen.dart';
 import 'views/cart_screen.dart';
 import 'views/orders_screen.dart';
 import 'views/products_screen.dart';
-
 import 'providers/cart.dart';
 import 'providers/products.dart';
 import 'providers/orders.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  await dotenv.load(fileName: ".env");
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

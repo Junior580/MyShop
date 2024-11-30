@@ -1,0 +1,38 @@
+name: Flutter CI
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test Flutter Application
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.24.1' 
+    
+    - name: Set environment variables
+      run: echo -e "BASE_API_URL=$BASE_API_URL\nAUTH_API_URL=$AUTH_API_URL\nAPI_KEY=$API_KEY" > .env
+      env:
+       BASE_API_URL: ${{ secrets.BASE_API_URL }}
+       AUTH_API_URL: ${{ secrets.AUTH_API_URL }}
+       API_KEY: ${{ secrets.API_KEY }}
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Run unit tests
+      run: flutter test
+
+    
