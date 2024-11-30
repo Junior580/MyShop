@@ -1,16 +1,17 @@
-# shop
+<h1 align="center"> Flutter shop </h1>
 
-A new Flutter project.
+<p align="center">
+[![My Skills](https://skillicons.dev/icons?i=flutter,firebase)](https://skillicons.dev)
+</p>
 
-## Getting Started
+### :clipboard: Sobre
+Construído como projeto principal do Bootcamp GoStack 12 o GoBarber é uma aplicação Web e Mobile que tem o intuito de facilitar a agenda de barbearias e clientes.
 
-This project is a starting point for a Flutter application.
+### :gear: Desenvolvimento
+O Back-end construído em Node.js com express utilizando os bancos de dados Postgres para os dados dos clientes e barbeiros, MongoDB para armazenar as notificações de agendamentos e o Redis para armazenar o cache, para cada banco foi criado um container no Docker. O Front-end Web foi feito utilizando React.JS e o Mobile feito com React-Native.
+O Front-end feito com React.JS e o Mobile utilizando React-Native.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### :checkered_flag: Aplicação
+<p align="center">
+  <img alt="shop" src="https://github.com/henriqueritter/Rocketseat-GoBarber/blob/master/go-barber.gif" />
+</p>
