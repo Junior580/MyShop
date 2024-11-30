@@ -1,7 +1,7 @@
 <h1 align="center"> Flutter shop </h1>
 
 <p align="center">
-[![My Skills](https://skillicons.dev/icons?i=flutter,firebase)](https://skillicons.dev)
+   <img src="https://skillicons.dev/icons?i=flutter,firebase" alt="shop-app" />
 </p>
 
 ### :clipboard: Sobre
