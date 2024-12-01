@@ -7,10 +7,10 @@
 ### :clipboard: Sobre
 Shop-app é um aplicativo desenvolvido em Flutter que simula uma experiência de loja virtual. Ele permite que os usuários realizem operações como:
 
-📋 Cadastro de produtos.
-⭐ Marcar itens como favoritos.
-🛒 Adicionar produtos ao carrinho.
-🛍️ Finalizar pedidos com facilidade.
+- 📋 Cadastro de produtos  
+- ⭐ Marcar itens como favoritos  
+- 🛒 Adicionar produtos ao carrinho  
+- 🛍️ Finalizar pedidos com facilidade  
 
 Uma solução prática para explorar e testar funcionalidades comuns de um aplicativo de compras! 🚀
 
