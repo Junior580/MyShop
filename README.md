@@ -16,5 +16,5 @@ Uma solução prática para explorar e testar funcionalidades comuns de um aplic
 
 ### :checkered_flag: Aplicação
 <p align="center">
-  <img alt="shop" src="https://github.com/henriqueritter/Rocketseat-GoBarber/blob/master/go-barber.gif" />
+  <img alt="shop" src="https://github.com/Junior580/MyShop/blob/develop/app-shop.gif" />
 </p>
